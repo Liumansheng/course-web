@@ -35,7 +35,10 @@ public class GuestbookController {
     public @ResponseBody String addMessage(String content,String username,HttpServletRequest request){
         Guestbook guestbook=new Guestbook();
         guestbook.setContent(content);
-        username=request.getSession().getAttribute("Student").toString();
+        Object value=request.getSession().getAttribute("Student");
+        if(value!=null){
+        	username=value.toString();
+        }
         if (username==null||"".equals(username)){
             guestbook.setUsername("游客");
         }else{
