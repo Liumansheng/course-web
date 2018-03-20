@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>自动控制原理</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/11.png" rel="icon">
+  <link href="img/11.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+
+  
+</head>
+
+<body>
+
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#intro" class="scrollto">自动控制原理</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+        
+          <li class="menu-active "><a href="#intro" id="courseware_btn">首页</a></li>
+          <li><a href="#about" id="homework_btn">作业</a></li>
+          <li><a href="#services" id="guestbook_btn">留言板</a></li>
+		  
+          <li class="menu-has-children"><a href="" data-toggle="modal" onclick="openLoginModal();">登录/注册</a>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  
+  <section id="intro">
+  
+    <div class="intro-container">
+      <div id="introCarousel" class="  slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+		
+          <div class="carousel-item active" id="courseware_cover" style="background-image: url('img/intro-carousel/1.jpg');">
+            <div class="carousel-container">
+              <div class="carousel-content">
+			  
+                <h2>网站介绍</h2>
+                <p>本网站具有查看，下载课件、查看作业、留言板互动等功能</p>
+                <a href="${pageContext.request.contextPath}/file" class="btn-get-started scrollto">查看课件</a>
+              </div>
+            </div>
+          </div>
+		  
+		  <div class="carousel-item active " id="homework_cover" style="background-image: url('img/intro-carousel/2.jpg'); display:none;">
+		   <div class="carousel-container">
+            <div class="carousel-content">
+			<div class="panel-group" id="accordion"></div>
+			
+            <!--<ul class="pagination " style="float: right">-->
+              <!--<li ><a href="javascript:void(0);" id="hwLastPage">&laquo;</a></li>-->
+              <!--<li><a href="javascript:void(0);" id="hwNextPage">&raquo;</a></li>-->
+            <!--</ul>-->
+            <ul class="pager" style="float: right">
+              <li><a href="javascript:void(0);" id="hwLastPage" class="pbtn-get-started scrollto"><span >上一页</span></a></li>
+              <li><a href="javascript:void(0);" id="hwNextPage" class="pbtn-get-started scrollto"><span >下一页</span></a></li>
+            </ul>
+	
+			</div>
+		   </div>
+          </div>
+		  
+		  <div class="carousel-item active" id="guestbook_cover" style="background-image: url('img/intro-carousel/5.jpg'); display:none;">
+		   <div class="carousel-container">
+            <div class="carousel-content">
+		  <div class="inner cover clearfix" >
+            <div id="messagePage">
+            </div>
+            <!--<ul class="pagination" style="float: right">-->
+              <!--<li ><a href="javascript:void(0);" id="lastPage">&laquo;</a></li>-->
+              <!--<li><a href="javascript:void(0);" id="nextPage">&raquo;</a></li>-->
+            <!--</ul>-->
+            <ul class="pager" style="float: right">
+              <li><a href="javascript:void(0);" id="mLastPage" class="pbtn-get-started scrollto"><span >上一页</span></a></li>
+              <li><a href="javascript:void(0);" id="mNextPage" class="pbtn-get-started scrollto"><span >下一页</span></a></li>
+            </ul>
+            <div class="form-group clearfix" >
+              <form id="messageForm" action="./guestbook/add" method="post" enctype="multipart/form-data">
+                <textarea required="true" rows="5" class="form-control-textArea" style="resize: none" maxlength="300" name="content" placeholder="发表点什么吧..."></textarea>
+                <div class="navbar-form navbar-right" role="search">
+                  <div class="form-group">
+                    <input type="text" class="form-control-textArea" name="username" placeholder="游客">
+                  </div>
+                  <a href="javascript:void(0);" id="mNextPage" class="btn-get-started scrollto"><span >发布</span></a>
+                </div>
+              </form>
+            </div>
+			
+          </div>
+		  </div>
+		  </div>
+		  </div>
+		  
+		  
+        </div>
+      </div>
+    </div>
+	
+
+  </section>
+  
+  <!-- #login and register -->
+   <div class="modal fade login" id="loginModal">
+		      <div class="modal-dialog login animated">
+    		      <div class="modal-content" align="center">
+    		         <div class="modal-header" >
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" >Login with</h4>
+                    </div>
+                    <div class="modal-body">  
+                        <div class="box">
+                             <div class="content">
+                                
+                              
+                                <div class="error"></div>
+                                <div class="form loginBox" align="center" >
+                                    <form method="post" action="/login" accept-charset="UTF-8">
+                                    <input id="email" class="form-control" type="text" placeholder="邮箱" name="email">
+									
+                                    <input id="password" class="form-control" type="password" placeholder="密码" name="password">
+                                    <div id="register" class="btn-get-started scrollto">
+									 <a href="#featured-services" class="btn-get-started scrollto" >登录</a>
+									</div>                                   </form>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="box">
+                            <div class="content registerBox" style="display:none;">
+                             <div class="form">
+                                <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
+								<input id="name" class="form-control" type="text" placeholder="名称" name="name">
+                                <input id="email" class="form-control" type="text" placeholder="邮箱" name="email">
+                                <input id="password" class="form-control" type="password" placeholder="密码" name="password">
+                                <input id="password_confirmation" class="form-control" type="password" placeholder="确认密码" name="password_confirmation">
+                                <div id="register" class="btn-get-started scrollto">
+									 <a href="#featured-services" class="btn-get-started scrollto" >创建账号</a>
+								</div>
+								</form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="forgot login-footer">
+                            <span>没有账号？ 
+                                 <a href="javascript: showRegisterForm();">注册</a>
+                            </span>
+                        </div>
+                        <div class="forgot register-footer" style="display:none">
+                             <span>已有账号?</span>
+                             <a href="javascript: showLoginForm();">登录</a>
+                        </div>
+                    </div>        
+    		      </div>
+		      </div>
+		</div>
+  
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/superfish/hoverIntent.js"></script>
+  <script src="lib/superfish/superfish.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+  <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
