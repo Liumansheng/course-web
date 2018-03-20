@@ -30,7 +30,6 @@ public class GuestbookController {
 
         return guestbookService.listPage((currentPage-1)*pageSize,pageSize);
     }
-
     @RequestMapping("/add")
     public @ResponseBody String addMessage(String content,String username,HttpServletRequest request){
         Guestbook guestbook=new Guestbook();
