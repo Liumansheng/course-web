@@ -36,4 +36,9 @@ public class GuestbookService {
     public List<Guestbook> listAll() {
         return guestbookMapper.listAll();
     }
+
+	public void deleteById(int id) {
+		 guestbookMapper.deleteByPrimaryKey(id);
+		
+	}
 }
