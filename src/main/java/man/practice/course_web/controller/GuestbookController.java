@@ -68,6 +68,18 @@ public class GuestbookController {
         }
         return "{0}";
     }
+    
+    @RequestMapping("/deleteById")
+    public @ResponseBody  String deleteById(@RequestParam(value = "id") int id){
+        try{
+        	System.out.println(id);
+            guestbookService.deleteById(id);
+        }catch (Exception e){
+            return "{1}";
+        }
+        return "{0}";
+        
+    }
 
     @RequestMapping("/listAll")
     public @ResponseBody List<Guestbook> listAll(){
