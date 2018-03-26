@@ -78,7 +78,7 @@
       });
 
       $("#homework_btn").click(function () {
-			 debugger;
+			
               hideAllCoverAndActive();
               $("#homework_cover").show();
               $("#homework_btn").closest("li").addClass("active");
@@ -104,7 +104,7 @@
       );
       $("#messageForm").validate({
           submitHandler:function(form){
-          	debugger;
+          	
               $("#messageForm").ajaxSubmit(function(data){
                   if (data=="1"){
                       currentPage=1;
@@ -124,7 +124,7 @@
  
 
   function hideAllCoverAndActive() {
-		debugger;
+	
       $("#courseware_cover").hide();
       $("#courseware_btn").closest("li").removeClass("active");
       $("#homework_cover").hide();
@@ -147,13 +147,29 @@
 	    second = second < 10 ? ('0' + second) : second;
 	    return y + '年' + m + '月' + d+'日';
 	};
+	
+	function deleteById(id){
+		 $.post("${pageContext.request.contextPath}/guestbook/deleteById", {"id": id}, function (data) {
+             if (data == "{0}") {
+            	 getMessage(1,5);
+             } else {
+                 alert("删除失败");
+             }
+         });
+
+	}
+	
+	
+	  
 	  function getMessage(currentPage,pageSize){
 
-          var messageDivBeforeName="<div class=\"panel panel-default\"><div class=\"panel-heading panel-left\" ><span >"
+          var messageDivBeforeName="<div  class=\"panel panel-default\"><div class=\"panel-heading panel-left\" ><span >"
           //+名字
           var massageDivBeforeTime="</span><span>  </span><span>发表于：</span><span >";
           //时间
-          var massageDivBeforeContent="</span></div><div class=\"panel-body panel-left\"><p>";
+          var massageDivBeforeContent="</span><a  href='javascript:void(0)' onclick=deleteById($('div1').attr('id')); >删除</a></div><div class=\"panel-body panel-left\"><p>";
+
+          var massageDivBeforeContent2="</span></div><div class=\"panel-body panel-left\"><p>";
 
 
           var massageDivAfterContent="</p></div></div>";
@@ -163,12 +179,17 @@
               if (data.length<pageSize) isLastPage=true;else isLastPage=false;
               $("#messagePage").children().remove();
               $.each(data,function(idx,item) {
-
+            	 
                   var name=item.username;
                   var content=item.content;
                   var time=formatDate(item.time);
-                  $("#messagePage").append(messageDivBeforeName+name+massageDivBeforeTime+time+massageDivBeforeContent+content+massageDivAfterContent);
-
+                  var user = '<%=session.getAttribute("Student")%>';
+                  if(name==user.toString()){
+                  $("#messagePage").append("<div1 id="+item.id+">"+messageDivBeforeName+name+massageDivBeforeTime+time+massageDivBeforeContent+content+massageDivAfterContent);
+                  }
+                  else{
+                  $("#messagePage").append(messageDivBeforeName+name+massageDivBeforeTime+time+massageDivBeforeContent2+content+massageDivAfterContent);
+                  }
               });
               window.scrollTo(0,0);
           },"json");
@@ -462,12 +483,12 @@
                     <div class="modal-footer" style="color:#000">
                         <div class="forgot login-footer"  >
                             <span>没有账号？ 
-                                 <a href="javascript: showRegisterForm();">注册</a>
+                                 <a href="javascript: showRegisterForm();" style="color:#18d36e;">注册</a>
                             </span>
                         </div>
                         <div class="forgot register-footer" style="display:none">
                              <span>已有账号?</span>
-                             <a href="javascript: showLoginForm();">登录</a>
+                             <a href="javascript: showLoginForm();" style="color:#18d36e;">登录</a>
                         </div>
                     </div>        
     		      </div>
