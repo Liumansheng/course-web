@@ -65,6 +65,7 @@
               showCaption: true,//是否显示标题
               maxFileSize : 2000*100,
               maxFileCount: 1,
+              textEncoding:'UTF-8',
           }).on("filebatchselected", function(event, files) {
               $(this).fileinput("upload");
           }).on("fileuploaded", function(event, data) {

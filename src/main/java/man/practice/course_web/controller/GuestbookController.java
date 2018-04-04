@@ -58,6 +58,19 @@ public class GuestbookController {
     public String admin(){
         return "admin/guestbook_manage";
     }
+    
+    @RequestMapping("/admin/reply")
+    public String reply(int id,String content){
+    	System.out.println(id+" "+content);
+    	Guestbook guest=guestbookService.findByid(id);
+    	String content2="回复"+" "+guest.getUsername()+" "+"的评论"+"“"+guest.getContent()+"”"+"<br>"+content;
+    	Guestbook reguestbook=new Guestbook();
+    	reguestbook.setUsername("管理员");
+    	reguestbook.setContent(content2);
+    	reguestbook.setTime(new Date());
+    	guestbookService.add(reguestbook);    	
+        return "admin/guestbook_manage";
+    }
 
     @RequestMapping("/admin/deleteByIds")
     public @ResponseBody  String deleteByIds(@RequestParam(value = "ids[]") int[] ids){

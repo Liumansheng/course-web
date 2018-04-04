@@ -206,9 +206,7 @@
             var childDivAfter="</p></div></div></div>";
             $.post(url,{"currentPage":currentPage,"pageSize":pageSize},function(data){
                 $("#accordion").children().remove();
-
                 if (data.length<pageSize) isLastPage=true;else isLastPage=false;
-
                 $.each(data,function(idx,item) {
                     console.log(idx);
                     var start=formatDate(item.startTime);

@@ -41,4 +41,8 @@ public class GuestbookService {
 		 guestbookMapper.deleteByPrimaryKey(id);
 		
 	}
+
+	public Guestbook findByid(int id) {
+		return guestbookMapper.selectByPrimaryKey(id);
+	}
 }

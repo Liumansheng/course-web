@@ -24,6 +24,7 @@
   <link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/css/bootstrap-table.min.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  
   <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
   <!--[if lt IE 9]>
   <script src="${pageContext.request.contextPath}/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -51,6 +52,30 @@
   <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
 
   <script type="text/javascript">
+ 
+  function operateFormatter(value, row, index) {
+	   return [
+	   '<input type="submit" value="回复" class="RoleOfedit btn btn-primary btn-sm reply-btn" data-container="body" data-placement="top" data-toggle="popover"  title="回复" style="display:inline">',
+	   ].join('');
+	 }
+  function hidepopo(){
+	  $('.popover').remove();
+  }
+   window.operateEvents = {
+				    'click .RoleOfedit': function (e, value, row, index) {	
+				   
+				    	$("[data-toggle='popover']").popover({
+				    		html:true,
+                            content:$("<form action='${pageContext.request.contextPath}/guestbook/admin/reply?id="+row.id+"' method='post' id='ReplyFrom' enctype='multipart/form-data'><textarea required='true'rows='3' class='form-control' name='content'></textarea>"+
+                            		" <div class='modal-footer' style='padding:4px'><button type='button' class='btn btn-default' style='padding:2px 2px;' onclick='hidepopo()'>关闭</button>"+
+                                    "<button type='submit' class='btn btn-primary' style='padding:2px 2px;'>提交</button></div></form>")
+                            
+				    	}); 
+				    	hidepopo();
+				    	$(this).popover('show');
+				    	}
+				   };
+   
       function initTable() {
           var url = "${pageContext.request.contextPath}/guestbook/listAll";
           $('#table').bootstrapTable({
@@ -106,7 +131,17 @@
                       title: '内容',
                       align: 'center',
                       valign: 'middle'
-                  }]
+                  },
+                  {
+                	  field: 'operate',
+                	  title: '操作',
+                	  width: '80px',
+                	   events: operateEvents,
+                	  formatter: operateFormatter,
+                	  clickToSelect:false,
+                	  
+                	}
+                  ]
           });
       }
       function initButton() {
@@ -167,7 +202,6 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">欢迎你，超级管理员</a></li>
         <li><a href="${pageContext.request.contextPath}">主页</a></li>
-        <li><a href="#">帮助</a></li>
         <li><a href="${pageContext.request.contextPath}/admin/logout">退出</a></li>
       </ul>
       <!--<form class="navbar-form navbar-right">-->

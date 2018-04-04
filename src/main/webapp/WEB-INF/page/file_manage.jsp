@@ -65,6 +65,7 @@
               showCaption: true,//是否显示标题
               maxFileSize : 2000*100,
               maxFileCount: 1,
+              textEncoding:'GB2312',
           }).on("filebatchselected", function(event, files) {
               $(this).fileinput("upload");
           }).on("fileuploaded", function(event, data) {
@@ -182,7 +183,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">欢迎你，超级管理员</a></li>
         <li><a href="${pageContext.request.contextPath}">主页</a></li>
-        <li><a href="#">帮助</a></li>
+
         <li><a href="${pageContext.request.contextPath}/admin/logout">退出</a></li>
       </ul>
       <!--<form class="navbar-form navbar-right">-->

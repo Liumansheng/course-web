@@ -19,9 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-/**
- * Created by vvxc on 2017/6/28.
- */
+
 @RequestMapping("/file")
 @Controller
 public class FileController {

@@ -24,4 +24,6 @@ public interface GuestbookMapper {
     List<Guestbook> listPage(int start, int pageSzie);
 
     List<Guestbook> listAll();
+
+
 }
