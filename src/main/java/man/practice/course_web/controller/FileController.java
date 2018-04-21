@@ -29,8 +29,8 @@ public class FileController {
     @RequestMapping("/admin/upload")
     public @ResponseBody String upload(@RequestParam(value = "myfile", required = false) MultipartFile myfile, HttpServletRequest request){
         System.out.println("开始");
-        String path = request.getSession().getServletContext().getRealPath("upload");
-        String fileName = myfile.getOriginalFilename();
+        String path = request.getSession().getServletContext().getRealPath("upload");//获取要上传到的服务器路径
+        String fileName = myfile.getOriginalFilename();//获取文件名
 //        String fileName = new Date().getTime()+".jpg";
 
         try {

@@ -32,7 +32,7 @@ public class StudentController {
 	    	System.out.println(username+password);
 	        Student student=StudentService.login(username,password);
 	        if (student==null){
-	            return "{\"code\":\"1\",\"msg\":\"loginfail\"}";
+	            return "{\"code\":\"1\",\"msg\":\"登录失败\"}";
 	        }else{
 	            request.getSession().setAttribute("Student",student.getUsername());
 	        }

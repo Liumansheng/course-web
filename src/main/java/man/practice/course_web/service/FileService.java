@@ -30,7 +30,7 @@ public class FileService {
         }else{
             targetFile.mkdirs();
         }
-        file.transferTo(targetFile);
+        file.transferTo(targetFile);//使用SpringMVC框架将文件上传到服务器
 
         File databaseFile=new File();
         databaseFile.setFileName(fileName);

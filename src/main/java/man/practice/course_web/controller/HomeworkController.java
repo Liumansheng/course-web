@@ -15,9 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by vvxc on 2017/6/24.
- */
+
 @Controller
 @RequestMapping("/homework")
 public class HomeworkController {
@@ -57,10 +55,11 @@ public class HomeworkController {
     public @ResponseBody String add(String startTime,String endTime,String content) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Homework homework=new Homework();
+        content=content.replace("\n","<br>");
         homework.setContent(content);
         homework.setStartTime(simpleDateFormat.parse(startTime));
         homework.setEndTime(simpleDateFormat.parse(endTime));
-
+        
         try{
             homeworkService.add(homework);
         }catch (Exception e){

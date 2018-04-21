@@ -68,8 +68,8 @@
               textEncoding:'GB2312',
           }).on("filebatchselected", function(event, files) {
               $(this).fileinput("upload");
-          }).on("fileuploaded", function(event, data) {
-                  if(data.response.code=="0"){
+          }).on("fileuploaded", function(event, data) {//将文件上传
+                  if(data.response.code=="0"){//如果返回的结果是0就刷新table
                       $("#table").bootstrapTable('refresh');
                   }
               });
